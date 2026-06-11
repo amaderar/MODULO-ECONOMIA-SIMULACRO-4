@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>Simulacro Economía — Microeconomía y Macroeconomía — Indicadores, Políticas y Globalización — Asesorías Académicas Izamal</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--azul:#0033cc;--azul-dark:#002299;--azul-light:#e8eeff;--naranja:#ff4500;--naranja-mid:#ff8c00;--bg:#f0f4ff;--card:#fff;--txt:#1a1a2e;--sub:#5a6080;--rad:14px;--shadow:0 6px 24px rgba(0,51,204,.13);}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 0 30px;}
+.hero{width:100%;background:linear-gradient(135deg,#0033cc 0%,#0011aa 60%,#001188 100%);padding:24px 20px 18px;display:flex;flex-direction:column;align-items:center;margin-bottom:18px;box-shadow:0 4px 20px rgba(0,0,0,.25);}
+.hero-inner{max-width:760px;width:100%;display:flex;align-items:center;gap:16px;}
+.hero-logo{width:76px;height:76px;flex-shrink:0;background:#fff;border-radius:50%;padding:5px;box-shadow:0 4px 14px rgba(0,0,0,.3);}
+.hero-logo img{width:100%;height:100%;object-fit:contain;border-radius:50%;}
+.hero-title{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.2;}
+.hero-title span{color:#ff8c00}
+.hero-subtitle{font-size:.76rem;color:rgba(255,255,255,.8);margin-top:4px;line-height:1.5;}
+.hero-badge{display:inline-block;background:rgba(255,140,0,.25);border:1px solid rgba(255,140,0,.5);border-radius:20px;padding:3px 12px;font-size:.68rem;color:#ffd080;font-weight:700;margin-top:6px;}
+.hero-stripe{width:100%;height:4px;background:linear-gradient(90deg,#ff4500,#ff8c00,#ff4500);margin-top:16px;border-radius:3px;opacity:.7;}
+.wrap{width:100%;max-width:760px;padding:0 12px;}
+.card{background:var(--card);border-radius:var(--rad);box-shadow:var(--shadow);padding:22px 20px;margin-bottom:14px;}
+#screen-home h2{font-size:1.2rem;text-align:center;margin-bottom:6px;color:var(--azul);font-weight:800;}
+.home-sub{text-align:center;color:var(--sub);margin-bottom:18px;font-size:.84rem;line-height:1.6;}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.info-card{background:var(--azul-light);border-radius:12px;padding:13px 8px;text-align:center;border:2px solid #c0d0f0;}
+.info-card .val{font-size:1.3rem;font-weight:800;color:var(--azul);}
+.info-card .lbl{font-size:.7rem;color:var(--sub);margin-top:3px;font-weight:600;}
+.btn-primary{width:100%;border:none;border-radius:12px;padding:14px;cursor:pointer;font-size:.97rem;font-weight:800;background:linear-gradient(135deg,var(--naranja),var(--naranja-mid));color:#fff;box-shadow:0 4px 14px rgba(255,69,0,.35);transition:opacity .2s,transform .1s;}
+.btn-primary:hover{opacity:.92;}.btn-primary:active{transform:scale(.98);}
+#screen-exam{padding:0;}
+.exam-header{padding:14px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.lectura-pill{font-size:.76rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--azul),var(--azul-dark));padding:5px 13px;border-radius:20px;max-width:65%;line-height:1.3;}
+.timer-box{font-size:1rem;font-weight:800;padding:5px 13px;border-radius:20px;background:var(--azul-light);color:var(--azul);min-width:72px;text-align:center;border:2px solid #c0d0f0;flex-shrink:0;transition:all .3s;}
+.timer-box.warn{background:#fff3e8;color:#cc5500;border-color:#ffb080;}
+.timer-box.danger{background:#fff0f0;color:#cc0000;border-color:#ffb0b0;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.progress-wrap{margin:0 20px 6px;height:6px;background:#e0e8ff;border-radius:3px;overflow:hidden;}
+.progress-bar{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--naranja),var(--naranja-mid));transition:width .35s;}
+.nav-section{padding:8px 20px 12px;border-bottom:2px solid var(--azul-light);}
+.nav-label{font-size:.69rem;color:var(--sub);margin-bottom:6px;font-weight:700;letter-spacing:.3px;}
+.nav-grid{display:flex;flex-wrap:wrap;gap:5px;}
+.nav-sep{width:100%;font-size:.67rem;color:var(--sub);font-weight:700;margin:5px 0 3px;letter-spacing:.3px;}
+.nav-btn{width:30px;height:30px;border-radius:7px;border:2px solid #d0d8f0;background:#fff;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;color:var(--txt);flex-shrink:0;}
+.nav-btn:hover{border-color:var(--azul);background:var(--azul-light);}
+.nav-btn.answered{background:var(--azul);border-color:var(--azul);color:#fff;}
+.nav-btn.wrong-nav{background:var(--naranja);border-color:var(--naranja);color:#fff;}
+.nav-btn.current{border-width:3px;transform:scale(1.1);}
+.exam-body{padding:14px 20px 20px;}
+.lectura-header{font-size:.88rem;font-weight:800;color:var(--azul);margin-bottom:12px;padding:8px 12px;background:var(--azul-light);border-radius:9px;border-left:4px solid var(--azul);}
+.lectura-texto{font-size:.87rem;line-height:1.8;color:var(--txt);margin-bottom:18px;padding:14px 16px;background:#fafbff;border:1px solid #d8e0f0;border-radius:10px;max-height:260px;overflow-y:auto;}
+.lectura-texto p{margin-bottom:10px;}.lectura-texto p:last-child{margin-bottom:0;}
+.q-num{font-size:.72rem;color:var(--sub);margin-bottom:6px;font-weight:700;letter-spacing:.3px;}
+.q-text{font-size:.94rem;line-height:1.7;margin-bottom:14px;font-weight:500;}
+.options{display:flex;flex-direction:column;gap:9px;}
+.opt-btn{border:2px solid #d0d8f0;border-radius:10px;background:#fff;padding:11px 14px;text-align:left;cursor:pointer;font-size:.88rem;line-height:1.5;transition:border-color .18s,background .18s;display:flex;align-items:flex-start;gap:10px;width:100%;}
+.opt-btn:hover:not(:disabled){border-color:var(--azul);background:var(--azul-light);}
+.opt-letter{min-width:26px;height:26px;border-radius:50%;background:#e8eeff;font-weight:800;font-size:.79rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--azul);}
+.opt-btn.correct{border-color:#27ae60;background:#eafaf1;}.opt-btn.correct .opt-letter{background:#27ae60;color:#fff;}
+.opt-btn.wrong{border-color:var(--naranja);background:#fff3f0;}.opt-btn.wrong .opt-letter{background:var(--naranja);color:#fff;}
+.opt-btn:disabled{cursor:default;}
+.explanation{display:none;margin-top:11px;background:#f8f9fe;border-left:4px solid #27ae60;padding:9px 13px;border-radius:0 8px 8px 0;font-size:.83rem;line-height:1.65;color:var(--txt);}
+.explanation.show{display:block;}.explanation.fail{border-left-color:var(--naranja);}
+.exam-footer{padding:0 20px 18px;display:flex;gap:8px;align-items:center;margin-top:12px;}
+.btn-nav{flex:1;padding:10px 5px;border-radius:10px;border:2px solid #d0d8f0;background:#fff;font-size:.85rem;font-weight:700;cursor:pointer;color:var(--txt);transition:all .18s;}
+.btn-nav:hover{border-color:var(--azul);background:var(--azul-light);}.btn-nav:disabled{opacity:.35;cursor:default;}
+.btn-entregar{padding:10px 15px;border-radius:10px;border:none;font-size:.85rem;font-weight:800;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--naranja),var(--naranja-mid));white-space:nowrap;box-shadow:0 3px 10px rgba(255,69,0,.3);}
+#screen-timeout{text-align:center;}
+#screen-timeout h2{font-size:1.2rem;margin-bottom:10px;color:var(--naranja);}
+#screen-timeout p{color:var(--sub);margin-bottom:20px;line-height:1.6;}
+#screen-results h2{text-align:center;font-size:1.2rem;margin-bottom:14px;color:var(--azul);font-weight:800;}
+.result-summary{background:linear-gradient(135deg,var(--azul),var(--azul-dark));border-radius:14px;padding:20px;text-align:center;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,51,204,.25);}
+.result-score{font-size:2.5rem;font-weight:800;color:#fff;}
+.result-label{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:3px;}
+.lect-results{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.lect-card{border-radius:12px;padding:13px;border:2px solid #c0d0f0;background:var(--azul-light);}
+.lect-card-title{font-size:.68rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px;}
+.lect-card-score{font-size:1.5rem;font-weight:800;color:var(--azul);}
+.lect-card-pct{font-size:.75rem;color:var(--sub);margin-top:2px;}
+.result-bars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:16px;}
+.rbar-card{border-radius:11px;padding:11px 7px;text-align:center;color:#fff;}
+.rbar-val{font-size:1.2rem;font-weight:800;}.rbar-lbl{font-size:.67rem;opacity:.85;margin-top:2px;}
+.cne-block{background:#fff;border:2px solid #c0d0f0;border-radius:12px;padding:15px 17px;margin-bottom:14px;}
+.cne-title{font-size:.73rem;font-weight:800;color:var(--azul);letter-spacing:.4px;margin-bottom:9px;text-transform:uppercase;}
+.cne-score-row{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+.cne-score{font-size:2.4rem;font-weight:800;line-height:1;}
+.cne-max{font-size:.8rem;color:var(--sub);font-weight:600;}
+.cne-label{font-size:.8rem;font-weight:700;margin-bottom:11px;}
+.cne-scale-labels{display:flex;justify-content:space-between;font-size:.62rem;color:var(--sub);margin-bottom:3px;}
+.cne-track{height:10px;background:#e8eeff;border-radius:5px;overflow:hidden;}
+.cne-fill{height:100%;border-radius:5px;transition:width .9s ease;}
+.cne-ticks{display:flex;justify-content:space-between;margin-top:2px;}.cne-tick{font-size:.58rem;color:#aab4d4;}
+.cne-note{font-size:.67rem;color:var(--sub);margin-top:8px;line-height:1.5;border-top:1px solid #e8eeff;padding-top:6px;}
+.review-section h3{font-size:.86rem;margin-bottom:9px;font-weight:800;color:var(--azul);}
+.rev-lect-hdr{font-size:.78rem;font-weight:800;margin:12px 0 7px;padding:5px 11px;border-radius:7px;background:var(--azul-light);color:var(--azul);}
+.rev-item{border:1px solid #d8e4f8;border-radius:9px;padding:11px 13px;margin-bottom:7px;}
+.rev-header{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.rev-badge{font-size:.67rem;font-weight:700;padding:2px 7px;border-radius:20px;}
+.rev-badge.ok{background:#d5f5e3;color:#1e8449;}.rev-badge.fail{background:#fce4e4;color:#c0392b;}.rev-badge.skip{background:#f0f0f0;color:#888;}
+.rev-num{font-size:.68rem;color:#aaa;}.rev-q{font-size:.83rem;line-height:1.5;margin-bottom:4px;}
+.rev-ans{font-size:.77rem;color:var(--sub);}.rev-ans.ok-ans{color:#1e8449;font-weight:600;}
+.rev-exp{font-size:.77rem;color:var(--txt);margin-top:4px;border-top:1px solid #eef0f8;padding-top:4px;line-height:1.5;}
+.btn-retry{background:linear-gradient(135deg,var(--azul),var(--azul-dark));color:#fff;border:none;border-radius:12px;width:100%;padding:12px;font-size:.93rem;font-weight:800;cursor:pointer;margin-top:10px;}.btn-retry:hover{opacity:.88;}
+.modal-bg{position:fixed;inset:0;background:rgba(0,20,80,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px;}
+.modal-bg.open{display:flex;}
+.modal{background:#fff;border-radius:14px;padding:22px 18px;max-width:330px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.2);}
+.modal h3{font-size:.97rem;margin-bottom:7px;color:var(--azul);font-weight:800;}
+.modal p{font-size:.83rem;color:var(--sub);margin-bottom:16px;line-height:1.6;}
+.modal-btns{display:flex;gap:8px;}.modal-btns button{flex:1;padding:10px;border-radius:9px;border:none;font-size:.86rem;font-weight:700;cursor:pointer;}
+.btn-cancel{background:#eef0f8;color:var(--txt);}.btn-confirm{background:linear-gradient(135deg,var(--naranja),var(--naranja-mid));color:#fff;}
+@media(max-width:560px){body{padding:0 0 20px;}.wrap{padding:0 8px;}.card{padding:16px 12px;}.exam-header,.exam-body,.exam-footer,.nav-section,.progress-wrap{padding-left:13px;padding-right:13px;}.nav-btn{width:27px;height:27px;font-size:.74rem;}.result-score{font-size:2rem;}.cne-score{font-size:1.9rem;}.lect-results{grid-template-columns:1fr;}.info-grid{grid-template-columns:1fr 1fr;}}
+
+.habilidades-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.hab-tag{background:var(--azul-light);border:1px solid #c0d0f0;border-radius:8px;
+  padding:9px 10px;font-size:.76rem;color:var(--azul);font-weight:600;
+  display:flex;align-items:center;gap:7px;}
+.q-text{white-space:pre-line;font-size:.93rem;line-height:1.8;margin-bottom:14px;font-weight:500;}
+.tip-box{background:#f0f7ff;border:1px solid #c0d8f0;border-radius:10px;
+  padding:11px 14px;margin-bottom:16px;font-size:.8rem;color:#2c5282;line-height:1.7;}
+</style>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [["$", "$"], ["\\(", "\\)"]],
+    displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+  },
+  svg: { fontCache: "global" }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo"><img src="logo.png" alt="Logo" style="width:60px;height:60px;object-fit:contain"></div>
+    <div>
+      <div class="hero-title">Asesorías Académicas <span>Izamal</span></div>
+      <div class="hero-subtitle">Simulacro EXANI-II · Economía · Subárea 2: Microeconomía y Macroeconomía</div>
+      <span class="hero-badge">📈 Subárea 2: Microeconomía y Macroeconomía</span>
+    </div>
+  </div>
+  <div class="hero-stripe"></div>
+</div>
+<div class="wrap">
+<div class="card" id="screen-home">
+  <h2>Simulacro 4 — Microeconomía y Macroeconomía — Indicadores, Políticas y Globalización</h2>
+  <p class="home-sub">Repaso general · Módulo Economía EXANI-II<br>Reactivos basados en exámenes reales.</p>
+  <div class="habilidades-grid"><div class="hab-tag"><span>📊</span> PIB, PNB y componentes del gasto (5)</div><div class="hab-tag"><span>💵</span> Política fiscal y monetaria (6) — reactivos reales</div><div class="hab-tag"><span>💹</span> Inflación: tipos, causas y efectos (5)</div><div class="hab-tag"><span>🌍</span> Comercio exterior, tipo de cambio y globalización (5)</div><div class="hab-tag"><span>💰</span> Dinero, ahorro y desarrollo económico (3)</div></div>
+  <div class="info-grid">
+    <div class="info-card"><div class="val">24</div><div class="lbl">Preguntas</div></div>
+    <div class="info-card"><div class="val">40 min</div><div class="lbl">Tiempo</div></div>
+    <div class="info-card"><div class="val">V4</div><div class="lbl">Versión</div></div>
+  </div>
+  <div class="tip-box">💡 <strong>Tip EXANI-II:</strong> Asocia cada escuela con sus postulados. Distingue política fiscal de monetaria. En oferta/demanda, identifica movimiento vs desplazamiento de curva.</div>
+  <button class="btn-primary" onclick="startExam()">▶ Comenzar simulacro</button>
+</div>
+<div class="card" id="screen-exam" style="display:none;padding:0">
+  <div class="exam-header"><div class="lectura-pill">📈 Subárea 2: Microeconomía y Macroeconomía</div><div class="timer-box" id="timer-box">40:00</div></div>
+  <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+  <div class="nav-section"><div class="nav-label">Azul: correcta · Naranja: incorrecta · Gris: pendiente</div><div class="nav-grid" id="nav-grid"></div></div>
+  <div class="exam-body">
+    <div class="q-num" id="q-num"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="options"></div>
+    <div class="explanation" id="explanation"></div>
+  </div>
+  <div class="exam-footer">
+    <button class="btn-nav" id="btn-prev" onclick="goTo(STATE.qIdx-1)">← Anterior</button>
+    <button class="btn-nav" id="btn-next-nav" onclick="goTo(STATE.qIdx+1)">Siguiente →</button>
+    <button class="btn-entregar" id="btn-entregar" style="display:none" onclick="pedirConfirmar()">Entregar</button>
+  </div>
+</div>
+<div class="card" id="screen-timeout" style="display:none">
+  <h2 style="color:var(--naranja);text-align:center;margin-bottom:10px">⏰ Tiempo agotado</h2>
+  <p style="text-align:center;color:var(--sub);margin-bottom:20px">Las preguntas sin responder cuentan como incorrectas.</p>
+  <button class="btn-retry" onclick="finishAndShow()">Ver resultados →</button>
+</div>
+<div class="card" id="screen-results" style="display:none">
+  <h2>📊 Resultados del simulacro</h2>
+  <div class="result-summary"><div class="result-score" id="res-score">—</div><div class="result-label">Reactivos correctos · 24 preguntas</div></div>
+  <div class="cne-block">
+    <div class="cne-title">📊 Índice CENEVAL Estimado</div>
+    <div class="cne-score-row"><span class="cne-score" id="cne-val">—</span><span class="cne-max">/ 1300</span></div>
+    <div class="cne-label" id="cne-lbl"></div>
+    <div class="cne-scale-labels"><span>700</span><span>800</span><span>900</span><span>1000</span><span>1100</span><span>1200</span><span>1300</span></div>
+    <div class="cne-track"><div class="cne-fill" id="cne-bar" style="width:0%"></div></div>
+    <div class="cne-ticks"><span class="cne-tick">▲Mín</span><span class="cne-tick" style="margin:0 auto">▲Media(1000)</span><span class="cne-tick">Máx▲</span></div>
+    <div class="cne-note" id="cne-note"></div>
+  </div>
+  <div class="result-bars">
+    <div class="rbar-card" style="background:#27ae60"><div class="rbar-val" id="res-ok">0</div><div class="rbar-lbl">Correctas</div></div>
+    <div class="rbar-card" style="background:var(--naranja)"><div class="rbar-val" id="res-fail">0</div><div class="rbar-lbl">Incorrectas</div></div>
+    <div class="rbar-card" style="background:#95a5a6"><div class="rbar-val" id="res-skip">0</div><div class="rbar-lbl">Sin responder</div></div>
+  </div>
+  <div class="review-section"><h3>Revisión detallada</h3><div id="review-list"></div></div>
+  <button class="btn-retry" onclick="retryExam()">🔄 Intentar de nuevo</button>
+</div>
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h3>¿Entregar el simulacro?</h3><p id="modal-msg"></p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn-confirm" onclick="confirmarEntrega()">Entregar</button>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+const BANCO = [
+{
+"tipo": "regular",
+"enunciado": "Derivada de una disminución del PIB mundial, la economía mexicana se vio afectada, experimentando una recesión. ¿Cuál sería la política más adecuada según el enfoque keynesiano?",
+"a": "Reducir el gasto público y aumentar impuestos para equilibrar el presupuesto.",
+"b": "Aumentar el gasto público en inversión y programas sociales para estimular la demanda interna y recuperar el empleo.",
+"c": "Aumentar la tasa de interés para controlar la inflación causada por la recesión.",
+"correcta": "b",
+"exp": "En recesión (caída del PIB, aumento del desempleo), el enfoque keynesiano recomienda política fiscal expansiva: el gobierno debe aumentar su gasto (obras públicas, programas sociales, transferencias) para inyectar demanda a la economía y recuperar el empleo, aunque genere déficit presupuestal temporal. La opción a) es contractiva (empeora la recesión). La opción c) es política monetaria contractiva (apropiada para inflación, no para recesión). Reactivo tipo exani.com.mx simulador EXANI-II."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los componentes del PIB por el método del gasto?",
+"a": "PIB = Consumo + Ahorro + Exportaciones.",
+"b": "PIB = Consumo privado (C) + Inversión privada (I) + Gasto público (G) + Exportaciones netas (X-M).",
+"c": "PIB = Renta + Beneficios + Impuestos.",
+"correcta": "b",
+"exp": "Por el método del gasto: PIB = C + I + G + (X-M). C = consumo de los hogares (el componente más grande, ~60-70%). I = inversión privada (maquinaria, construcción, inventarios). G = gasto del gobierno en bienes y servicios (no transferencias como pensiones). X-M = exportaciones netas (exportaciones menos importaciones); si X>M: superávit comercial; si M>X: déficit. En México: C ~65%, G ~12%, I ~20%, X-M varía. Este es el método más usado para medir el PIB."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la diferencia entre el PIB y el PNB (Producto Nacional Bruto)?",
+"a": "Son exactamente lo mismo con diferente nombre.",
+"b": "El PIB mide la producción dentro de las fronteras del país (independientemente de la nacionalidad del productor); el PNB mide la producción de los ciudadanos del país (independientemente de dónde produzcan).",
+"c": "El PNB incluye los servicios; el PIB solo incluye bienes físicos.",
+"correcta": "b",
+"exp": "PIB (Producto Interno Bruto): producción dentro del territorio nacional, sin importar si el productor es nacional o extranjero. Incluye las filiales de empresas extranjeras en México. PNB (Producto Nacional Bruto): producción de los residentes nacionales, en el país o en el extranjero. Excluye la producción de extranjeros en México, incluye la producción de mexicanos en el extranjero. PIB-PNB = Ingreso neto de factores del exterior. En economías globalizadas con mucha IED, la diferencia puede ser significativa."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es el efecto multiplicador del gasto público en la economía keynesiana?",
+"a": "El gasto público no tiene efecto multiplicador; solo afecta directamente al PIB.",
+"b": "Un aumento en el gasto público genera un incremento del PIB mayor que el gasto inicial, porque el dinero circula varias veces en la economía (cada persona que recibe gasta una parte, que llega a otra persona que también gasta, etc.).",
+"c": "El multiplicador siempre es igual a 1, por lo que el gasto público no amplifica el PIB.",
+"correcta": "b",
+"exp": "El multiplicador keynesiano: ΔY = (1/(1-PMC)) × ΔG, donde PMC es la propensión marginal a consumir (fracción de cada peso adicional de ingreso que se gasta). Si PMC=0.8: multiplicador = 1/(1-0.8) = 5. Un aumento de gasto de $100 genera $500 de PIB adicional. Ejemplo: el gobierno construye una carretera ($100M) → los trabajadores gastan su salario → los comercios reciben ese ingreso y gastan parte → el efecto se amplifica. El multiplicador es mayor cuando la PMC es alta."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la diferencia entre inflación de demanda e inflación de costos?",
+"a": "Son el mismo fenómeno con diferente nombre según el período.",
+"b": "La inflación de demanda ocurre cuando la demanda agregada supera la oferta (demasiado dinero persiguiendo pocos bienes); la inflación de costos ocurre cuando aumentan los costos de producción (salarios, materias primas, energía) y los productores trasladan el aumento a los precios.",
+"c": "Solo existe la inflación de demanda en las economías modernas.",
+"correcta": "b",
+"exp": "Inflación de demanda (demand-pull): exceso de demanda agregada sobre la capacidad productiva. Causas: exceso de gasto público, emisión de dinero, boom crediticio. Solución: política contractiva (subir tasas, reducir gasto). Inflación de costos (cost-push o stagflation): los costos de producción suben → las empresas suben precios. Causas: suba del precio del petróleo (como en 1973), aumento de salarios superiores a la productividad, devaluación cambiaria. Más difícil de combatir porque la política contractiva empeoraría el desempleo."
+},
+{
+"tipo": "asoc",
+"enunciado": "Relaciona cada indicador macroeconómico con su organismo que lo mide en México.\n1. PIB trimestral  2. Inflación (INPC)  3. Tasa de desempleo (ENOE)  4. Tasa de interés de referencia\n—\na) BANXICO (Banco de México).\nb) INEGI (Instituto Nacional de Estadística y Geografía).\nc) INEGI publica el PIB; las cifras anuales también se difunden por INEGI.\nd) INEGI publica la ENOE mensualmente.",
+"a": "1c - 2b - 3d - 4a",
+"b": "1b - 2a - 3c - 4d",
+"c": "1d - 2c - 3a - 4b",
+"correcta": "a",
+"exp": "PIB (1c): el INEGI publica el PIB trimestral y anual de México. Inflación/INPC (2b): el INEGI calcula y publica el INPC quincenalmente; BANXICO lo usa como referencia para su política monetaria. Desempleo/ENOE (3d): la Encuesta Nacional de Ocupación y Empleo la realiza el INEGI mensualmente. Tasa de interés de referencia (4a): BANXICO fija la tasa de fondeo bancario en sus reuniones de política monetaria cada 6-7 semanas."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son las principales causas de la inflación según la teoría cuantitativa del dinero?",
+"a": "La inflación es causada exclusivamente por el aumento del salario mínimo.",
+"b": "MV = PQ: si la masa monetaria (M) crece más rápido que la producción real (Q), manteniendo constante la velocidad de circulación (V), el nivel de precios (P) sube proporcionalmente.",
+"c": "La inflación es causada solo por las importaciones de bienes extranjeros más caros.",
+"correcta": "b",
+"exp": "La ecuación cuantitativa del dinero (Fisher): $MV = PQ$, donde M = oferta monetaria, V = velocidad de circulación, P = nivel de precios, Q = producción real. Si V y Q son constantes (supuesto monetarista): ΔM → ΔP (proporcional). Más dinero en circulación sin más producción → inflación. Esta es la base del monetarismo: el banco central debe controlar M para controlar P. El IPC mide el nivel de precios P en la práctica."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los tipos de política monetaria y cuándo se aplica cada una?",
+"a": "Solo existe la política monetaria expansiva.",
+"b": "Política monetaria expansiva (baja tasas, aumenta la oferta de dinero para estimular la economía en recesión) y contractiva (sube tasas, reduce la oferta de dinero para combatir la inflación).",
+"c": "La política monetaria la define la SHCP, no el banco central.",
+"correcta": "b",
+"exp": "Política monetaria expansiva (acomodaticia): BANXICO baja la tasa de interés → el crédito se abarata → aumentan el consumo y la inversión → estimula el PIB → se aplica en recesión. Riesgo: puede generar inflación. Política monetaria contractiva (restrictiva): BANXICO sube la tasa → el crédito se encarece → cae el consumo e inversión → disminuye la demanda → reduce la inflación → se aplica cuando la inflación supera la meta. Riesgo: puede frenar el crecimiento y aumentar el desempleo."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es el efecto de una devaluación de la moneda nacional sobre las exportaciones e importaciones?",
+"a": "Una devaluación encarece las exportaciones y abarata las importaciones.",
+"b": "Una devaluación abarata las exportaciones (más competitivas en el exterior) y encarece las importaciones (los bienes extranjeros cuestan más en moneda local).",
+"c": "Una devaluación no tiene efecto sobre el comercio exterior.",
+"correcta": "b",
+"exp": "Devaluación: la moneda nacional pierde valor frente a las divisas extranjeras (tipo de cambio sube). Efectos: Exportaciones: los bienes nacionales se vuelven más baratos para los extranjeros → aumenta la demanda de exportaciones → favorece a exportadores. Importaciones: los bienes extranjeros se encarecen en moneda local → los consumidores nacionales compran menos importaciones → reduce el déficit comercial. Riesgo: la devaluación también puede generar inflación (los insumos importados cuestan más → sube el costo de producción)."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los principales bloques comerciales en que participa México?",
+"a": "México no participa en ningún bloque comercial.",
+"b": "México participa en el T-MEC (con EUA y Canadá), la Alianza del Pacífico (con Chile, Colombia y Perú), la OCDE y tiene acuerdos con la UE y Japón.",
+"c": "México solo tiene acuerdos comerciales con países latinoamericanos.",
+"correcta": "b",
+"exp": "México tiene una amplia red de acuerdos comerciales: T-MEC (Tratado México-EUA-Canadá, en vigor desde 2020, sustituyó al TLCAN): ~80% del comercio exterior de México. Alianza del Pacífico (2012): México, Chile, Colombia, Perú; libre comercio y movilidad. OCDE: organización de países desarrollados; México es miembro desde 1994. TLC con UE (2000, modernizado en 2018). Acuerdo con Japón. México tiene ~46 tratados de libre comercio con ~50 países, siendo una de las economías más abiertas del mundo."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la diferencia entre crecimiento económico y desarrollo económico?",
+"a": "Son lo mismo: si el PIB crece, hay desarrollo automáticamente.",
+"b": "El crecimiento económico es el aumento del PIB (producción); el desarrollo económico es un proceso más amplio que incluye mejoras en el nivel de vida, educación, salud, igualdad y bienestar, no solo en la producción.",
+"c": "El desarrollo económico es exclusivo de los países pobres; el crecimiento de los ricos.",
+"correcta": "b",
+"exp": "Crecimiento económico: aumento cuantitativo del PIB real. Puede haber crecimiento sin mejora en el bienestar si los beneficios no se distribuyen equitativamente. Desarrollo económico: transformación cualitativa y cuantitativa: aumento del ingreso per cápita, reducción de la pobreza, mejora en educación y salud, menor desigualdad, sustentabilidad ambiental. El IDH (Índice de Desarrollo Humano) del PNUD combina PIB per cápita, esperanza de vida y educación. México tiene un IDH de ~0.78 (desarrollo humano alto)."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la función del dinero en la economía?",
+"a": "El dinero es exclusivamente un medio de pago en transacciones comerciales.",
+"b": "El dinero cumple tres funciones: medio de cambio (facilita las transacciones), unidad de cuenta (permite medir el valor de los bienes) y depósito de valor (permite transferir poder adquisitivo al futuro).",
+"c": "El dinero solo es útil cuando está respaldado por oro (patrón oro).",
+"correcta": "b",
+"exp": "Las tres funciones del dinero: (1) Medio de cambio: elimina el trueque; facilita las transacciones. (2) Unidad de cuenta: denominador común para medir y comparar precios. (3) Depósito de valor (reserva de valor): permite ahorrar y transferir poder adquisitivo al futuro (aunque la inflación erosiona esta función). La creación del dinero por los bancos centrales y el sistema bancario es fundamental para el funcionamiento de la economía moderna. El dinero fiduciario (sin respaldo en oro) es el sistema actual."
+},
+{
+"tipo": "asoc",
+"enunciado": "Relaciona cada política económica con su instrumento principal.\n1. Política fiscal expansiva  2. Política monetaria contractiva  3. Política comercial proteccionista  4. Política cambiaria\n—\na) Imposición de aranceles y cuotas para proteger la industria nacional de la competencia extranjera.\nb) Aumento del gasto público o reducción de impuestos para estimular la demanda agregada.\nc) Intervención del banco central en el mercado de divisas para influir en el tipo de cambio.\nd) Aumento de la tasa de interés de referencia para reducir el crédito y controlar la inflación.",
+"a": "1b - 2d - 3a - 4c",
+"b": "1d - 2b - 3c - 4a",
+"c": "1c - 2a - 3d - 4b",
+"correcta": "a",
+"exp": "Fiscal expansiva (1b): SHCP aumenta gasto (carreteras, educación) o reduce ISR para estimular la economía en recesión. Monetaria contractiva (2d): BANXICO sube tasa de referencia para encarecer el crédito y reducir la inflación. Proteccionismo (3a): aranceles (impuesto a importaciones), cuotas (límites de cantidad), barreras no arancelarias (normas técnicas). Política cambiaria (4c): el banco central puede comprar/vender divisas para influir en el tipo de cambio (sin eliminar la flotación libre)."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la paradoja del ahorro en macroeconomía keynesiana?",
+"a": "El ahorro siempre beneficia a la economía porque financia la inversión productiva.",
+"b": "Si todos los hogares intentan ahorrar más simultáneamente, la demanda agregada cae, el PIB disminuye y los ingresos bajan, de modo que el ahorro total de la economía puede no aumentar o incluso caer.",
+"c": "El ahorro no tiene ningún efecto sobre la actividad económica.",
+"correcta": "b",
+"exp": "La paradoja del ahorro (Keynes): lo que es racional para un individuo (ahorrar más) puede ser dañino para la economía en conjunto. Si todos ahorran más → cae el consumo → cae la demanda → las empresas producen menos → caen los ingresos → los hogares pueden terminar ahorrando igual o menos que antes. En recesión, el 'instinto de ahorro' puede profundizarla (trampa de liquidez). Esta paradoja justifica la política fiscal expansiva keynesiana: el Estado gasta cuando los privados no pueden."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los principales efectos de la inflación en la economía?",
+"a": "La inflación siempre tiene efectos positivos porque aumenta los ingresos nominales.",
+"b": "Redistribuye el ingreso (perjudica a los tenedores de activos nominales y beneficia a los deudores), reduce el poder adquisitivo, genera incertidumbre, distorsiona los precios relativos y puede llevar a la hiperinflación si no se controla.",
+"c": "La inflación no tiene efectos en la economía si el banco central la anuncia anticipadamente.",
+"correcta": "b",
+"exp": "Efectos de la inflación: Distribución del ingreso: perjudica a ahorradores (su dinero vale menos), trabajadores asalariados (salario real cae) y pensionados; beneficia a deudores (pagan con dinero devaluado). Poder adquisitivo: los consumidores compran menos con el mismo ingreso. Incertidumbre: dificulta la planificación empresarial e inversión. Competitividad: la inflación alta hace los bienes nacionales más caros → perjudica exportaciones. Tipo de cambio: presiona la devaluación del peso. La inflación moderada (~2-3%) puede ser compatible con el crecimiento económico."
+},
+{
+"tipo": "comp",
+"enunciado": "Cuando el gobierno de un país en recesión decide aumentar el gasto en obras de infraestructura para estimular la economía, está aplicando una política _______ de tipo expansivo.\n\na) Monetaria\nb) Comercial\nc) Fiscal",
+"a": "Monetaria",
+"b": "Comercial",
+"c": "Fiscal",
+"correcta": "c",
+"exp": "La política fiscal comprende las decisiones del gobierno sobre el gasto público y los impuestos para influir en la actividad económica. Aumentar el gasto en infraestructura es política fiscal expansiva (receta keynesiana): inyecta demanda en la economía, crea empleo directo e indirecto (efecto multiplicador). La política monetaria la maneja el banco central (tasas de interés, oferta de dinero). La política comercial regula las importaciones y exportaciones (aranceles, acuerdos). Reactivo tipo Studocu/exani.com.mx EXANI-II."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la teoría de la ventaja comparativa de David Ricardo?",
+"a": "Adam Smith: cada país produce lo que produce con ventaja absoluta.",
+"b": "David Ricardo (1817): cada país debe especializarse en el bien donde tiene menor costo de oportunidad relativo, aunque no tenga ventaja absoluta en nada; el libre comercio beneficia a todos.",
+"c": "Keynes: el libre comercio genera desempleo en países pobres.",
+"correcta": "b",
+"exp": "Ricardo demostró matemáticamente que ambos países ganan con el comercio si cada uno se especializa según su ventaja comparativa, incluso si uno es más eficiente en todo. El costo de oportunidad relativo es lo que importa, no los niveles absolutos de productividad. Esta teoría es la base del libre comercio moderno y de organismos como la OMC y los tratados de libre comercio como el T-MEC."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es el índice de Gini y qué mide?",
+"a": "Mide el nivel de precios de una economía respecto al promedio internacional.",
+"b": "Mide la desigualdad en la distribución del ingreso: 0 = igualdad perfecta; 1 = máxima desigualdad (una persona tiene todo el ingreso).",
+"c": "Mide la eficiencia productiva de una economía en relación con otras.",
+"correcta": "b",
+"exp": "El coeficiente de Gini (Corrado Gini, 1912) se basa en la curva de Lorenz. Va de 0 (igualdad perfecta) a 1 (desigualdad total). México tiene Gini ≈ 0.45 (alta desigualdad). Países nórdicos ≈ 0.25 (baja desigualdad). El INEGI lo calcula con la ENIGH. Una alta desigualdad implica que el crecimiento económico no llega equitativamente a toda la población, afectando el bienestar y la cohesión social."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es el papel de los bancos comerciales en la creación de dinero?",
+"a": "Los bancos solo guardan los depósitos; no crean dinero nuevo.",
+"b": "Los bancos crean dinero mediante el multiplicador del crédito: prestan una fracción de los depósitos; el dinero prestado se redeposita y vuelve a prestarse, multiplicando la oferta monetaria.",
+"c": "Solo el banco central puede crear dinero; los bancos comerciales no tienen ese poder.",
+"correcta": "b",
+"exp": "Multiplicador bancario: M = 1 / coeficiente de reservas. Si el encaje es 10%: M = 10. Un depósito inicial de $1,000 puede generar hasta $10,000 de dinero en circulación. BANXICO controla el encaje y la tasa de interés para regular este proceso. La creación excesiva de dinero puede generar inflación; la insuficiente, restricción crediticia y recesión."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los efectos del libre comercio en los países en desarrollo?",
+"a": "El libre comercio siempre beneficia por igual a todos los países participantes.",
+"b": "Puede generar crecimiento por especialización y exportaciones, pero también puede afectar industrias nacionales que no compiten, generar dependencia de exportaciones primarias y aumentar la desigualdad sin políticas complementarias.",
+"c": "El libre comercio elimina completamente el desempleo en los países en desarrollo.",
+"correcta": "b",
+"exp": "Efectos ambivalentes en países en desarrollo: Beneficios: acceso a mercados externos, IED, transferencia tecnológica, especialización eficiente. Costos: industrias domésticas pueden quebrar (desindustrialización), trampa de exportación primaria (materias primas volátiles), volatilidad. El debate libre comercio vs proteccionismo es central en la política económica de México: el T-MEC dinamizó las exportaciones manufactureras pero el campo sufrió ante la competencia del maíz subsidiado de EUA."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuál es la diferencia entre crecimiento y desarrollo económico?",
+"a": "Son sinónimos: si el PIB crece, automáticamente hay desarrollo.",
+"b": "El crecimiento económico es el aumento del PIB; el desarrollo económico es más amplio: incluye mejoras en educación, salud, igualdad, bienestar y sustentabilidad, no solo en la producción.",
+"c": "El desarrollo es exclusivo de países pobres; el crecimiento de países ricos.",
+"correcta": "b",
+"exp": "Crecimiento económico: aumento cuantitativo del PIB real. Puede existir sin mejora en el bienestar si los beneficios no se distribuyen equitativamente. Desarrollo económico (Amartya Sen): expansión de las 'capacidades y libertades' humanas: ingreso, salud, educación, equidad de género, participación política. El IDH (PNUD) combina esperanza de vida, educación y PIB per cápita. México tiene IDH ≈ 0.78 (alto). La relación crecimiento-desarrollo no es automática; requiere políticas redistributivas."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son las causas principales de la inflación según las distintas escuelas económicas?",
+"a": "La inflación solo es causada por el aumento del salario mínimo.",
+"b": "Inflación de demanda (exceso de demanda agregada), inflación de costos (aumento de costos de producción) e inflación monetaria (exceso de oferta de dinero, teoría cuantitativa).",
+"c": "La inflación solo ocurre en países con sistema económico socialista.",
+"correcta": "b",
+"exp": "Causas de la inflación: Inflación de demanda (demand-pull): cuando la demanda agregada supera la capacidad productiva; más dinero persigue pocos bienes. Inflación de costos (cost-push): aumento de salarios, energía o materias primas que encarecen la producción. Inflación monetaria: exceso de oferta de dinero sin respaldo en producción real (MV=PQ). Inflación importada: devaluación del peso encarece los insumos importados. Inflación de expectativas: si empresas y trabajadores esperan inflación, ajustan precios y salarios anticipadamente."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Cuáles son los objetivos de la política monetaria del Banco de México (BANXICO)?",
+"a": "El principal objetivo es maximizar el empleo en la economía mexicana.",
+"b": "El objetivo principal es mantener la estabilidad del poder adquisitivo del peso (controlar la inflación alrededor del 3% anual); como objetivos secundarios: apoyar el crecimiento y el empleo sin comprometer la inflación.",
+"c": "BANXICO tiene como objetivo único aumentar las reservas internacionales.",
+"correcta": "b",
+"exp": "BANXICO tiene mandato constitucional (Art. 28 CPEUM): su objetivo prioritario es la estabilidad de precios (inflación objetivo: 3% ± 1%). A diferencia de la Reserva Federal de EUA (doble mandato: inflación + empleo), BANXICO tiene un mandato único de inflación. Sus instrumentos: tasa de interés de referencia (objetivo de fondeo), operaciones de mercado abierto, encaje, comunicación de expectativas (forward guidance). Un banco central independiente (autonomía desde 1994) puede fijar su política sin presiones políticas."
+},
+{
+"tipo": "regular",
+"enunciado": "¿Qué son los términos de intercambio en el comercio internacional?",
+"a": "El precio que se paga por las divisas en el mercado cambiario.",
+"b": "La relación entre los precios de las exportaciones de un país y los precios de sus importaciones; si mejoran, el país puede comprar más importaciones con la misma cantidad de exportaciones.",
+"c": "El conjunto de aranceles y cuotas que se aplican al comercio exterior.",
+"correcta": "b",
+"exp": "Términos de intercambio (TI) = Índice de precios de exportaciones / Índice de precios de importaciones × 100. Si TI > 100 y mejoran: las exportaciones valen más en relación a las importaciones → el país puede comprar más bienes extranjeros con la misma producción. Si TI empeoran (caen): el país debe exportar más para importar lo mismo. México exporta principalmente manufacturas (auto, electrónica) e importa bienes de capital e insumos. Una caída en el precio del petróleo empeoró los TI de México en 2014-2016."
+}
+];
+const TIEMPO_MIN = 40;
+const STATE = {qIdx:0,answers:{},timerSec:0,timerID:null};
+const $=id=>document.getElementById(id);
+const show=id=>$(id).style.display='block';
+const hide=id=>$(id).style.display='none';
+function fmtT(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+function calcCNE(c,t){if(!t)return 1000;const z=((c/t)*100-50)/16.67;return Math.min(1300,Math.max(700,Math.round(1000+100*z)));}
+function cneColor(c){return c>=1050?'#1e8449':c>=950?'#d4ac0d':'#cc3300';}
+function cneLabel(c){return c>=1100?'Muy por encima de la media':c>=1050?'Por encima de la media':c>=950?'Cerca de la media':c>=900?'Por debajo de la media':'Muy por debajo de la media';}
+function shuffleReactivo(r){
+  if(r._opts)return;
+  const tc=r[r.correcta];
+  let opts=[{l:'a',t:r.a},{l:'b',t:r.b},{l:'c',t:r.c}];
+  if(r.tipo!=='asoc'&&r.tipo!=='comp'){
+    for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]];}
+  }
+  r._opts=opts; r._answerKey=opts.find(o=>o.t===tc).l;
+}
+function startExam(){
+  STATE.qIdx=0;STATE.answers={};
+  BANCO.forEach(r=>{delete r._opts;delete r._answerKey;shuffleReactivo(r);});
+  hide('screen-home');buildNavGrid();show('screen-exam');startTimer();renderQ();
+}
+function retryExam(){hide('screen-results');startExam();}
+function startTimer(){
+  STATE.timerSec=TIEMPO_MIN*60;renderTimer();
+  STATE.timerID=setInterval(()=>{STATE.timerSec--;renderTimer();
+    if(STATE.timerSec<=0){clearInterval(STATE.timerID);timeOut();}},1000);
+}
+function renderTimer(){
+  const tb=$('timer-box');tb.textContent=fmtT(STATE.timerSec);
+  tb.className='timer-box'+(STATE.timerSec<=60?' danger':STATE.timerSec<=180?' warn':'');
+}
+function timeOut(){hide('screen-exam');show('screen-timeout');}
+function finishAndShow(){hide('screen-timeout');showResults();}
+function buildNavGrid(){
+  const g=$('nav-grid');g.innerHTML='';
+  BANCO.forEach((r,i)=>{
+    const b=document.createElement('button');
+    b.className='nav-btn';b.id='nb-'+i;b.textContent=i+1;b.title=r.tipo;
+    b.onclick=(()=>{const x=i;return()=>goTo(x);})();
+    g.appendChild(b);
+  });
+  updateNav();
+}
+function updateNav(){
+  BANCO.forEach((r,i)=>{
+    const b=$('nb-'+i);if(!b)return;
+    let cls='nav-btn';
+    if(STATE.answers.hasOwnProperty(i))cls+=STATE.answers[i]===r._answerKey?' answered':' wrong-nav';
+    if(i===STATE.qIdx)cls+=' current';
+    b.className=cls;
+  });
+  $('progress-bar').style.width=(Object.keys(STATE.answers).length/BANCO.length*100)+'%';
+}
+function goTo(i){if(i<0||i>=BANCO.length)return;STATE.qIdx=i;renderQ();}
+function renderQ(){
+  const r=BANCO[STATE.qIdx],n=BANCO.length,i=STATE.qIdx;
+  $('q-num').textContent='Pregunta '+(i+1)+' de '+n;
+  $('q-text').textContent=r.enunciado;
+  $('btn-prev').disabled=i===0;
+  $('btn-next-nav').disabled=i===n-1;
+  $('btn-entregar').style.display=i===n-1?'block':'none';
+  const con=$('options');con.innerHTML='';
+  const saved=STATE.answers.hasOwnProperty(i)?STATE.answers[i]:null;
+  const answered=saved!==null,cl=r._answerKey;
+  r._opts.forEach(o=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn';btn.dataset.key=o.l;
+    const sm=r.tipo==='asoc'||r.tipo==='comp';
+    btn.innerHTML='<span class="opt-letter">'+o.l.toUpperCase()+'</span><span style="'+(sm?'font-size:.83rem;line-height:1.6;':'')+'">'+o.t+'</span>';
+    if(answered){
+      btn.disabled=true;
+      if(saved===cl){if(o.l===cl)btn.classList.add('correct');}
+      else{if(o.l===saved)btn.classList.add('wrong');if(o.l===cl)btn.classList.add('correct');}
+    }else{btn.onclick=()=>selectOpt(o.l,btn);}
+    con.appendChild(btn);
+  });
+  const ex=$('explanation');
+  if(answered){
+    const ok=saved===cl;
+    ex.innerHTML=(ok?'✅ ':'❌ ')+(r.exp||'Respuesta correcta: '+cl.toUpperCase());
+    ex.className='explanation show'+(ok?'':' fail');
+  }else{ex.className='explanation';ex.innerHTML='';}
+  updateNav();
+}
+function selectOpt(key,cb){
+  const r=BANCO[STATE.qIdx];STATE.answers[STATE.qIdx]=key;
+  const cl=r._answerKey,ok=key===cl;
+  document.querySelectorAll('.opt-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.key===cl)b.classList.add('correct');
+    if(b===cb&&!ok)b.classList.add('wrong');
+  });
+  const ex=$('explanation');
+  ex.innerHTML=(ok?'✅ ':'❌ ')+(r.exp||'Respuesta correcta: '+cl.toUpperCase());
+  ex.className='explanation show'+(ok?'':' fail');
+  updateNav();
+}
+function pedirConfirmar(){
+  const p=BANCO.length-Object.keys(STATE.answers).length;
+  $('modal-msg').innerHTML=p>0?'Tienes <strong>'+p+'</strong> pregunta(s) sin responder. ¿Entregar?':'¿Entregar el simulacro?';
+  $('modal-bg').classList.add('open');
+}
+function cerrarModal(){$('modal-bg').classList.remove('open');}
+function confirmarEntrega(){cerrarModal();clearInterval(STATE.timerID);hide('screen-exam');showResults();}
+function showResults(){
+  let c=0,w=0,sk=0;
+  const porTipo={};
+  BANCO.forEach((r,i)=>{
+    const t=r.tipo||'regular';
+    if(!porTipo[t])porTipo[t]={c:0,t2:0,nom:t};
+    porTipo[t].t2++;
+    if(!STATE.answers.hasOwnProperty(i))sk++;
+    else if(STATE.answers[i]===r._answerKey){c++;porTipo[t].c++;}
+    else w++;
+  });
+  const tot=BANCO.length,pct=Math.round(c/tot*100),cne=calcCNE(c,tot),col=cneColor(cne);
+  $('res-score').textContent=c+'/'+tot+' ('+pct+'%)';
+  $('res-ok').textContent=c;$('res-fail').textContent=w;$('res-skip').textContent=sk;
+  $('cne-val').textContent=cne;$('cne-val').style.color=col;
+  $('cne-lbl').textContent=cneLabel(cne);$('cne-lbl').style.color=col;
+  $('cne-bar').style.width=((cne-700)/600*100)+'%';$('cne-bar').style.background=col;
+  $('cne-note').textContent='Estimado con '+c+' aciertos de '+tot+' ('+pct+'%). Z=(X-50)/16.67, ICNE=1000+100Z.';
+  const rv=$('review-list');rv.innerHTML='';
+  BANCO.forEach((r,i)=>{
+    const g=STATE.answers[i],cl=r._answerKey;
+    const om={};r._opts.forEach(o=>om[o.l]=o.t);
+    let st='skip',bd='Sin responder';
+    if(g){st=g===cl?'ok':'fail';bd=g===cl?'Correcta':'Incorrecta';}
+    rv.innerHTML+='<div class="rev-item"><div class="rev-header">'
+      +'<span class="rev-badge '+st+'">'+bd+'</span>'
+      +'<span class="rev-num">P.'+(i+1)+'</span></div>'
+      +'<div class="rev-q" style="white-space:pre-line;">'+r.enunciado+'</div>'
+      +(g?'<div class="rev-ans">Tu resp: '+g.toUpperCase()+') '+(om[g]||'')+'</div>':'')
+      +(g!==cl?'<div class="rev-ans ok-ans">✓ Correcta: '+cl.toUpperCase()+') '+(om[cl]||'')+'</div>':'')
+      +(r.exp?'<div class="rev-exp">💡 '+r.exp+'</div>':'')
+      +'</div>';
+  });
+  show('screen-results');
+}
+
+</script>
+</body>
+</html>
